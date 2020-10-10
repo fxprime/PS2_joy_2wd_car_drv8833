@@ -36,13 +36,7 @@ double mapf(double val, double in_min, double in_max, double out_min, double out
     return (val - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-
-
-//ฟังก์ชันดูเครื่องหมาย >0 ให้ค่าเป็น 1 , <0 ให้ค่าเป็น -1
-template <typename type>
-type sign(type value) {
-    return type((value>0)-(value<0));
-}
+ 
 
 //ฟังก์ชันเริ่มการตั้งค่ามอเตอร์ ให้รันใน Setup()
 void motor_init() {
@@ -99,10 +93,9 @@ void motor_cmd(float leftspd, float rightspd) {
     analogWrite(MLftAIN2Pin, 255);
   }else if( applyDeadband(leftspd, 0.05) > 0 ) {
     analogWrite(MLftAIN1Pin, Lout);
-    analogWrite(MLftAIN2Pin, 1);
-    
+    analogWrite(MLftAIN2Pin, 0);
   }else{
-    analogWrite(MLftAIN1Pin, 1);
+    analogWrite(MLftAIN1Pin, 0);
     analogWrite(MLftAIN2Pin, Lout);
     
   }
@@ -112,10 +105,10 @@ void motor_cmd(float leftspd, float rightspd) {
     analogWrite(MRgtAIN2Pin, 255);
   }else if( applyDeadband(rightspd, 0.05) > 0 ) {
     analogWrite(MRgtAIN1Pin, Rout);
-    analogWrite(MRgtAIN2Pin, 1);
+    analogWrite(MRgtAIN2Pin, 0);
     
   }else{
-    analogWrite(MRgtAIN1Pin, 1);
+    analogWrite(MRgtAIN1Pin, 0);
     analogWrite(MRgtAIN2Pin, Rout);
     
   }
