@@ -13,7 +13,7 @@ void joy_init() {
 
   //setup pins and settings:  
   //                  GamePad(clock, command, attention, data, Pressures?, Rumble?) check for error
-  error = ps2x.config_gamepad(13, 4, 5, 3, true, true); 
+  error = ps2x.config_gamepad(13, 4, 5, 3, false, true); 
 
   if (error == 0) {
     Serial.println("Found Controller, configured successful");
